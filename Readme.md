@@ -10,19 +10,19 @@ tar xvf alibaba-rocketmq-3.2.2.tar.gz
 ```shell
 cd alibaba-rocketmq/bin/
 #默认占用9876端口 指定日志输出的位置
-nohup sh mqnamesrv > ../logs/mq.log 2>&1 &
+nohup sh mqnamesrv >> ../logs/mq.log 2>&1 &
 ```
 
 ###启动Broker
 ```shell
 #默认端口10911（127.0.0.1:9876为nameserver，链接进行注册）指定日志输出的位置
-nohup sh mqbroker -n "127.0.0.1:9876" > ../logs/mq.log 2>&1 &
+nohup sh mqbroker -n "127.0.0.1:9876" >> ../logs/mq.log 2>&1 &
 ```
 
 执行 `more nohup.out` 显示
 ```
 The Name Server boot success.
-The broker[ZhengYings-MacBook-Pro.local, 192.168.23.39:10911] boot success. and name server is 127.0.0.1:9876
+The broker[hry-server 10.135.111.22:10911] boot success. and name server is 127.0.0.1:9876
 ```
 则代表启动成功
 
@@ -47,19 +47,19 @@ cp broker.properties broker-s.properties
 ####创建日志目录
 ```
 #创建日志目录
-mkdir -p /Users/zhengying/store
+mkdir -p /home/lizhihao/store
 #创建数据存储目录
-mkdir -p /Users/zhengying/store/commitlog
+mkdir -p /home/lizhihao/store/commitlog
 ```
 
 ####启动
 
 ```shell
 #启动nameserver
-nohup sh mqnamesrv > ../logs/mq.log 2>&1 &
+nohup sh mqnamesrv >> ../logs/mq.log 2>&1 &
 #启动主broker
-nohup sh mqbroker -c ../conf/1m-1s-sync/broker-m.properties > ../logs/mq.log 2>&1 &
+nohup sh mqbroker -c ../conf/1m-1s-sync/broker-m.properties >> ../logs/mq.log 2>&1 &
 #启动从broker
-nohup sh mqbroker -c ../conf/1m-1s-sync/broker-s.properties > ../logs/mq.log 2>&1 &
+nohup sh mqbroker -c ../conf/1m-1s-sync/broker-s.properties >> ../logs/mq.log 2>&1 &
 ```
 

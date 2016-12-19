@@ -1,15 +1,13 @@
 package org.felix.rocketmq;
 
-import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.alibaba.rocketmq.client.producer.SendResult;
 import com.alibaba.rocketmq.common.message.Message;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.CountDownLatch;
 
 public class Producer implements Runnable{
 
@@ -40,7 +38,7 @@ public class Producer implements Runnable{
 		 */
 
 		long l = System.currentTimeMillis();
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10000; i++) {
 			Thread thread = new Thread(new Producer());
 			thread.setName("线程"+i);
 			thread.start();
@@ -66,7 +64,7 @@ public class Producer implements Runnable{
 					        "OrderID001",// key
 					        ("Hello MetaQ TagA---"+sdf.format(new Date())+Thread.currentThread().getName()+"----"+i).getBytes());// body
 					SendResult sendResult = producer.send(msg);
-//					System.out.println(sendResult);
+					System.out.println(sendResult);
 				}
 
 				{
@@ -75,7 +73,7 @@ public class Producer implements Runnable{
 					        "OrderID0034",// key
 					        ("Hello MetaQ TagB---"+sdf.format(new Date())+Thread.currentThread().getName()+"----"+i).getBytes());// body
 					SendResult sendResult = producer.send(msg);
-//					System.out.println(sendResult);
+					System.out.println(sendResult);
 				}
 
 				{
@@ -84,7 +82,7 @@ public class Producer implements Runnable{
 					        "OrderID061",// key
 					        ("Hello MetaQ TagC---"+sdf.format(new Date())+Thread.currentThread().getName()+"----"+i).getBytes());// body
 					SendResult sendResult = producer.send(msg);
-//					System.out.println(sendResult);
+					System.out.println(sendResult);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
